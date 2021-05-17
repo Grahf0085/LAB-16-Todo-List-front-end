@@ -8,7 +8,7 @@ export default class AuthPage extends Component {
     name: '',
     email: '',
     password: '',
-    error:
+    error: ''
   }
 
   handleSwitch = () => {
