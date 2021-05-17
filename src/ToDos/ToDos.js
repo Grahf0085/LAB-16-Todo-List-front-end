@@ -85,7 +85,7 @@ export default class ToDos extends Component {
             <li key={todo.id}>
               <h2>{todo.task}</h2>
               <span>{todo.completed} {todo.completed === 'true' ? 'Completed' : 'Get to Work'}</span>
-              <button className="complete" onClick{() => this.handleComplete(todo.id)}</button>
+              <button className="complete" onClick={() => this.handleComplete(todo.id)}></button>
             </li>
           ))}
         </ul>
