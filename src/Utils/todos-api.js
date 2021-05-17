@@ -67,17 +67,4 @@ export async function completeTodo(id) {
 }
 
 
-  //addTodo
-
-
-//addNewTodo
-
-
-//CompleteTodo
-
-
-//deleteTodo
-
-
-
 
