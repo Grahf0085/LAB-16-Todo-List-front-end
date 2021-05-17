@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AuthPage.css';
+import { signUp, signIn } from '../Utils/todos-api';
 
 export default class AuthPage extends Component {
 
@@ -47,7 +48,7 @@ export default class AuthPage extends Component {
   }
 
   handlePasswordChange = ({ target }) => {
-    this.setSState({ password: target.value })
+    this.setSState({ password: target.value });
   }
 
   render() {
