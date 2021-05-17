@@ -85,7 +85,8 @@ export default class ToDos extends Component {
             <li key={todo.id}>
               <h2>{todo.task}</h2>
               <span>{todo.completed} {todo.completed === 'true' ? 'Completed' : 'Get to Work'}</span>
-              <button className='complete' onClick{() => this.handleComplete(todo.id)}>Did Work</button>
+              <button className='complete' onClick={() => this.handleComplete(todo.id)}>Did Work</button>
+              <button className='delete' onClick={() => this.handleDelete(todo.id)}>Don't Want to Do Work</button>
             </li>
           ))}
         </ul>
@@ -93,4 +94,4 @@ export default class ToDos extends Component {
       </div>
     );
   }
-}
+} id
