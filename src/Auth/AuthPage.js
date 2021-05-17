@@ -48,7 +48,7 @@ export default class AuthPage extends Component {
   }
 
   handlePasswordChange = ({ target }) => {
-    this.setSState({ password: target.value });
+    this.setState({ password: target.value });
   }
 
   render() {
