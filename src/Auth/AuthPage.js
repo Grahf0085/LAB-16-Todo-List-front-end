@@ -31,7 +31,7 @@ export default class AuthPage extends Component {
 
       onUser(user);
 
-      history.pushState('/');
+      history.push('/todos');
     }
 
     catch (err) {

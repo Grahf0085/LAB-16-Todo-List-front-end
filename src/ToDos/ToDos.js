@@ -13,6 +13,7 @@ export default class ToDos extends Component {
     try {
       const todoArray = await getTodos();
       this.setState({ todoArray: todoArray });
+      // console.log(this.state.todoArray);
     }
     catch (err) {
       console.log(err);
@@ -22,12 +23,14 @@ export default class ToDos extends Component {
   handleAdd = async e => {
     e.preventDefault();
     const { todo, todoArray } = this.state;
+    console.log(todoArray);
 
     try {
-      const addedTodo = await addTodo({ name: todo });
+      const addedTodo = await addTodo({ task: todo, completed: false });
+      console.log(addedTodo);
       const updatedTodos = [...todoArray, addedTodo];
       this.setState({
-        todos: updatedTodos,
+        todoArray: updatedTodos,
         todo: ''
       });
     }
@@ -71,7 +74,6 @@ export default class ToDos extends Component {
   render() {
 
     const { todo, todoArray } = this.state;
-
     return (
       <div className="ToDos">
 

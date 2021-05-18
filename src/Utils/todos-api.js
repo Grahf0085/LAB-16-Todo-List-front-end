@@ -33,9 +33,9 @@ export async function signIn(credentials) {
 
 export async function addTodo(todo) {
   const response = await request
-    .post('api/todos')
+    .post('/api/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'))
-    .send((todo));
+    .send(todo);
 
   return response.body;
 }
@@ -43,7 +43,7 @@ export async function addTodo(todo) {
 
 export async function getTodos() {
   const response = await request
-    .get('api/me/todos')
+    .get('/api/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'));
 
   return response.body;
