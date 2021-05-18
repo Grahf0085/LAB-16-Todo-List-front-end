@@ -13,6 +13,7 @@ export default class ToDos extends Component {
     try {
       const todoArray = await getTodos();
       this.setState({ todoArray: todoArray });
+      // console.log(this.state.todoArray);
     }
     catch (err) {
       console.log(err);
@@ -22,12 +23,14 @@ export default class ToDos extends Component {
   handleAdd = async e => {
     e.preventDefault();
     const { todo, todoArray } = this.state;
+    console.log(todoArray);
 
     try {
-      const addedTodo = await addTodo({ name: todo });
+      const addedTodo = await addTodo({ task: todo, completed: false });
+      console.log(addedTodo);
       const updatedTodos = [...todoArray, addedTodo];
       this.setState({
-        todos: updatedTodos,
+        todoArray: updatedTodos,
         todo: ''
       });
     }
@@ -47,7 +50,7 @@ export default class ToDos extends Component {
       await deleteTodo(id);
 
       const updatedTodos = todoArray.filter(todo => todo.id !== id);
-      this.setState({ todo: updatedTodos });
+      this.setState({ todoArray: updatedTodos });
     }
     catch (err) {
       console.log(err);
@@ -58,7 +61,9 @@ export default class ToDos extends Component {
     const { todoArray } = this.state;
 
     try {
-      const updatedTodo = await completeTodo(id);
+      const foundToDo = todoArray.find(item => item.id === id);
+      console.log(foundToDo);
+      const updatedTodo = await completeTodo(id, { ...foundToDo, completed: true });
 
       const updatedTodos = todoArray.map(todo => todo.id === id ? updatedTodo : todo);
       this.setState({ todoArray: updatedTodos });
@@ -71,7 +76,6 @@ export default class ToDos extends Component {
   render() {
 
     const { todo, todoArray } = this.state;
-
     return (
       <div className="ToDos">
 
@@ -84,7 +88,7 @@ export default class ToDos extends Component {
           {todoArray.map(todo => (
             <li key={todo.id}>
               <h2>{todo.task}</h2>
-              <span>{todo.completed} {todo.completed === 'true' ? 'Completed' : 'Get to Work'}</span>
+              <span>{todo.completed} {todo.completed === true ? 'Completed' : 'Get to Work'}</span>
               <button className='complete' onClick={() => this.handleComplete(todo.id)}>Did Work</button>
               <button className='delete' onClick={() => this.handleDelete(todo.id)}>Don't Want to Do Work</button>
             </li>
