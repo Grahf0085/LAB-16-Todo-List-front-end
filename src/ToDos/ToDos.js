@@ -50,7 +50,7 @@ export default class ToDos extends Component {
       await deleteTodo(id);
 
       const updatedTodos = todoArray.filter(todo => todo.id !== id);
-      this.setState({ todo: updatedTodos });
+      this.setState({ todoArray: updatedTodos });
     }
     catch (err) {
       console.log(err);
@@ -61,7 +61,9 @@ export default class ToDos extends Component {
     const { todoArray } = this.state;
 
     try {
-      const updatedTodo = await completeTodo(id);
+      const foundToDo = todoArray.find(item => item.id === id);
+      console.log(foundToDo);
+      const updatedTodo = await completeTodo(id, { ...foundToDo, completed: true });
 
       const updatedTodos = todoArray.map(todo => todo.id === id ? updatedTodo : todo);
       this.setState({ todoArray: updatedTodos });
@@ -86,7 +88,7 @@ export default class ToDos extends Component {
           {todoArray.map(todo => (
             <li key={todo.id}>
               <h2>{todo.task}</h2>
-              <span>{todo.completed} {todo.completed === 'true' ? 'Completed' : 'Get to Work'}</span>
+              <span>{todo.completed} {todo.completed === true ? 'Completed' : 'Get to Work'}</span>
               <button className='complete' onClick={() => this.handleComplete(todo.id)}>Did Work</button>
               <button className='delete' onClick={() => this.handleDelete(todo.id)}>Don't Want to Do Work</button>
             </li>

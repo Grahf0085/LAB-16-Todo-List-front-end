@@ -58,11 +58,11 @@ export async function deleteTodo(id) {
 }
 
 
-export async function completeTodo(id) {
+export async function completeTodo(id, completed) {
   const response = await request
-    .post(`/ai/todos/${id}/complete`)
-    .set('Authorization', window.localStorage.getItem('TOKEN'));
-
+    .put(`/api/todos/${id}`)
+    .set('Authorization', window.localStorage.getItem('TOKEN'))
+    .send(completed);
   return response.body;
 }
 
